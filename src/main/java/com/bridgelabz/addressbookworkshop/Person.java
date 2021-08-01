@@ -1,6 +1,7 @@
 package com.bridgelabz.addressbookworkshop;
 
 public class Person {
+    private  String Date;
     private String firstName;
     private String lastName;
     private String address;
@@ -9,6 +10,7 @@ public class Person {
     private String email;
     private String zip;
     private String phoneNo;
+    private String AddressBookType;
 
     public Person(String firstName, String lastName, String address, String city, String state, String zip, String phoneNo, String email) {
         this.firstName=firstName;
@@ -20,10 +22,22 @@ public class Person {
         this.phoneNo = phoneNo;
         this.email = email;
     }
-
+    public Person(String firstName, String lastName, String address, String city, String state, String zip, String phoneNo, String email,String AddressBookType,String Date) {
+        this.firstName=firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phoneNo = phoneNo;
+        this.email = email;
+        this.AddressBookType =AddressBookType;
+        this.Date = Date;
+    }
     public Person() {
 
     }
+
 
     public String getFirstName() {
         return firstName;
@@ -64,7 +78,13 @@ public class Person {
     public void setState(String state) {
         this.state = state;
     }
+    public String getZip() {
+        return zip;
+    }
 
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
     public String getEmail() {
         return email;
     }
@@ -72,13 +92,19 @@ public class Person {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getZip() {
-        return zip;
+    public String getAddressBookType() {
+        return AddressBookType;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setAddressBookType(String addressBookType) {
+        AddressBookType = addressBookType;
+    }
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
     }
 
     public String getPhoneNumber() {
@@ -147,5 +173,6 @@ public class Person {
             return false;
         return true;
     }
+
 
 }
