@@ -8,7 +8,22 @@ public class Person {
     private String state;
     private String email;
     private String zip;
-    private String phoneNumber;
+    private String phoneNo;
+
+    public Person(String firstName, String lastName, String address, String city, String state, String zip, String phoneNo, String email) {
+        this.firstName=firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phoneNo = phoneNo;
+        this.email = email;
+    }
+
+    public Person() {
+
+    }
 
     public String getFirstName() {
         return firstName;
@@ -67,18 +82,18 @@ public class Person {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return phoneNo;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumber(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
     @Override
-    public String toString() {
-        return "[" + "firstName=" + firstName + '\'' + ", lastName='" + lastName + '\'' +
+    public String toString(){
+        return "[" +"firstName=" + firstName + '\'' + ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' + ", city='" + city + '\'' +
-                ", state='" + state + '\'' + ", zip='" + zip + '\'' +
-                ", phoneNo='" + phoneNumber + '\'' + ", email='" + email + '\'' + ']';
+                ", state='" +state + '\'' + ", zip='" + zip + '\'' +
+                ", phoneNo='" + phoneNo+ '\'' + ", email='" + email + '\'' + ']';
     }
 }
