@@ -142,5 +142,4 @@ public class Service {
     public void displayList() {
         for (Person iterator : personList) System.out.println(iterator);
     }
-
 }
