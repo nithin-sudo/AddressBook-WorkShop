@@ -21,7 +21,7 @@ public class AddressBookMain {
                     service.editContact();
                     break;
                 case 3:
-                    System.out.println("Enter the Name of the person do you wants to delete:");
+                    System.out.println("Enter the Name of the person do you want to delete:");
                     String personName = scanner.next();
                     service.deleteContact(personName);
                     break;
