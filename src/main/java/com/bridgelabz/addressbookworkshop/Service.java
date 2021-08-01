@@ -1,12 +1,14 @@
 package com.bridgelabz.addressbookworkshop;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Service {
     static Scanner scanner = new Scanner(System.in);
     ArrayList<Person> personList = new ArrayList<>();
-
+    private Map<String, ArrayList<Person>> AddressBooks = new HashMap<>();
     public void addNewContact() {
         Person person = new Person();
         System.out.println("Enter First name:");
@@ -32,8 +34,22 @@ public class Service {
 
         System.out.println("Enter Phone:");
         person.setPhoneNumber(scanner.next());
+        System.out.println("Enter Book name to which you have to add contact");
+        String bookName  = scanner.next();
+        if(AddressBooks.containsKey(bookName))
+        {
+            ArrayList<Person> contactList = AddressBooks.get(bookName);
+            contactList.add(person);
+            AddressBooks.put(bookName,contactList);
+            System.out.println("New Contact Added Successfully");
+        }
+        else
+        {
+            personList.add(person);
+            AddressBooks.put(bookName,personList);
+            System.out.println("New book created and added Contact Added Successfully");
+        }
 
-        personList.add(person);
     }
     public void editContact() {
         String enteredFirstName;
