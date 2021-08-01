@@ -10,7 +10,7 @@ public class AddressBookMain {
         while (!isExit) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("\nEnter options \n1.Add. \n2.edit contact \n3.delete contact \n4.Display Contact.\n5.search person in a city \n6.view person " +
-                    "\n7.sort by name \n8.sort by city\n9.read from file\n10.write to file \n 11.Write To csv \n 12.read from csv \n13.Exit.");
+                    "\n7.sort by name \n8.sort by city\n9.read from file\n10.write to file \n 11.Write To csv \n 12.read from csv \n13. write to json 14 .read from json \n15.Exit.");
             int userInput = scanner.nextInt();
             switch (userInput)
             {
@@ -61,6 +61,12 @@ public class AddressBookMain {
                     service.readFromCsvFile();
                     break;
                 case 13:
+                    service.writeToJson();
+                    break;
+                case 14:
+                    service.readFromJson();
+                    break;
+                case 15:
                     isExit = true;
                     break;
                 default:
