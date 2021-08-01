@@ -128,6 +128,17 @@ public class Service {
             personList.stream().filter(value -> value.getCity().equals(city)).map(Person::getFirstName).forEach(System.out::println);
         }
     }
+    public void viewPersonInACity (String city)
+    {
+        for(String bookName : addressBooks.keySet())
+        {
+            int countPerson = 0;
+            addressBooks.get(bookName);
+            personList.stream().filter(value -> value.getCity().equals(city)).map(Person::getFirstName).forEach(System.out::println);
+            countPerson++;
+            System.out.println("total persons:"+countPerson);
+        }
+    }
     public void displayList() {
         for (Person iterator : personList) System.out.println(iterator);
     }
