@@ -83,6 +83,14 @@ public class Service {
             }
         }
     }
+    public void deleteContact(String name) {
+        for (int i = 0; i < personList.size(); i++) {
+            if (personList.get(i).getFirstName().equals(name)) {
+                Person person = personList.get(i);
+                personList.remove(person);
+            }
+        }
+    }
     public void displayList() {
         for (Person iterator : personList) System.out.println(iterator);
     }
