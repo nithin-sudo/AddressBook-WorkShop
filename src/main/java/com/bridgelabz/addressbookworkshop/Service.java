@@ -13,6 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -397,5 +398,21 @@ public class Service {
         }
         System.out.println(addressBookData);
         return addressBookData;
+    }
+    public List<Person> readData(LocalDate start, LocalDate end) throws AddressBookException {
+        String query = null;
+        if (start != null)
+            query = String.format("select * from address_book where Date between '%s' and '%s';", start, end);
+        if (start == null)
+            query = "select * from address_book";
+        List<Person> addressBookList = new ArrayList<>();
+        try (Connection con = addressBookConnection.getConnection()) {
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            addressBookList = this.getAddressBookDetails(rs);
+        } catch (SQLException e) {
+            throw new AddressBookException(e.getMessage(), AddressBookException.ExceptionType.DATABASE_EXCEPTION);
+        }
+        return addressBookList;
     }
 }
