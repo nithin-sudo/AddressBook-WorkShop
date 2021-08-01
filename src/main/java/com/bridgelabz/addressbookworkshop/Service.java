@@ -1,9 +1,7 @@
 package com.bridgelabz.addressbookworkshop;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Service {
     static Scanner scanner = new Scanner(System.in);
@@ -138,6 +136,12 @@ public class Service {
             countPerson++;
             System.out.println("total persons:"+countPerson);
         }
+    }
+    public void sortByName() {
+        addressBooks.keySet().forEach((String name) -> {
+            addressBooks.get(name).stream().sorted(Comparator.comparing(Person::getFirstName))
+                    .collect(Collectors.toList()).forEach(person -> System.out.println(person.toString()));
+        });
     }
     public void displayList() {
         for (Person iterator : personList) System.out.println(iterator);
