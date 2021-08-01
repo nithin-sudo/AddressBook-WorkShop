@@ -1,6 +1,16 @@
 package com.bridgelabz.addressbookworkshop;
+import com.opencsv.CSVWriter;
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+
 import java.io.File;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -11,7 +21,9 @@ public class Service {
     static Scanner scanner = new Scanner(System.in);
     ArrayList<Person> personList = new ArrayList<>();
     private Map<String, ArrayList<Person>> addressBooks = new HashMap<>();
+    public static final String FILE_PATH="C:\\Users\\nithinkrishna\\Desktop";
     public static String addressBookFile = "AddressBookFile.txt";
+    public static final String CSV_FILE="/addressBook.csv";
     public void addNewContact() {
         Person person = new Person();
         System.out.println("Enter First name:");
@@ -184,5 +196,64 @@ public class Service {
     }
     public void displayList() {
         for (Person iterator : personList) System.out.println(iterator);
+    }
+    public void writeToCsv()
+    {
+        try
+        {
+            Writer writer = Files.newBufferedWriter(Paths.get(FILE_PATH+CSV_FILE));
+            StatefulBeanToCsv<Person> beanToCsv = new StatefulBeanToCsvBuilder<Person>(writer)
+                    .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
+                    .build();
+            List<Person> ContactList = new ArrayList<>();
+            addressBooks.entrySet().stream()
+                    .map(books->books.getKey())
+                    .map(bookNames->{
+                        return addressBooks.get(bookNames);
+                    }).forEach(contacts ->{
+                ContactList.addAll(contacts);
+            });
+            beanToCsv.write(ContactList);
+            writer.close();
+        }
+        catch (CsvDataTypeMismatchException e)
+        {
+            e.printStackTrace();
+        }
+        catch (CsvRequiredFieldEmptyException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public void readFromCsvFile()
+    {
+        Reader reader;
+        try {
+            reader = Files.newBufferedReader(Paths.get(FILE_PATH+CSV_FILE));
+            CsvToBean<Person> csvToBean = new CsvToBeanBuilder(reader)
+                    .withType(Person.class)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .build();
+            List<Person> contacts = csvToBean.parse();
+
+            for(Person contact: contacts) {
+                System.out.println("Name : " + contact.getFirstName()+" "+contact.getLastName());
+                System.out.println("Email : " + contact.getEmail());
+                System.out.println("PhoneNo : " + contact.getPhoneNumber());
+                System.out.println("Address : " + contact.getAddress());
+                System.out.println("State : " + contact.getState());
+                System.out.println("City : " + contact.getCity());
+                System.out.println("Zip : " + contact.getZip());
+                System.out.println("==========================");
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
