@@ -8,7 +8,7 @@ public class Person {
     private String state;
     private String email;
     private String zip;
-    private long phoneNumber;
+    private String phoneNumber;
 
     public String getFirstName() {
         return firstName;
@@ -66,19 +66,19 @@ public class Person {
         this.zip = zip;
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
     @Override
-    public String toString(){
-        return "[" +"firstName=" + firstName + '\'' + ", lastName='" + lastName + '\'' +
+    public String toString() {
+        return "[" + "firstName=" + firstName + '\'' + ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' + ", city='" + city + '\'' +
-                ", state='" +state + '\'' + ", zip='" + zip + '\'' +
-                ", phoneNo='" + phoneNumber+ '\'' + ", email='" + email + '\'' + ']';
+                ", state='" + state + '\'' + ", zip='" + zip + '\'' +
+                ", phoneNo='" + phoneNumber + '\'' + ", email='" + email + '\'' + ']';
     }
 }
