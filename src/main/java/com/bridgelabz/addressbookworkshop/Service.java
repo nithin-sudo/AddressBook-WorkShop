@@ -143,6 +143,14 @@ public class Service {
                     .collect(Collectors.toList()).forEach(person -> System.out.println(person.toString()));
         });
     }
+    public void sortByCity() {
+        addressBooks.keySet().forEach((String key) -> {
+            addressBooks.get(key).stream()
+                    .sorted(Comparator.comparing(Person::getCity))
+                    .collect(Collectors.toList())
+                    .forEach(person -> System.out.println(person.toString()));
+        });
+    }
     public void displayList() {
         for (Person iterator : personList) System.out.println(iterator);
     }

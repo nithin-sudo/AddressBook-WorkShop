@@ -9,7 +9,8 @@ public class AddressBookMain {
         boolean isExit = false;
         while (!isExit) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("\nEnter options \n1.Add. \n2.edit contact \n3.delete contact \n4.Display Contact.\n5.search person in a city \n6.view person \n7.sort by name\n8.Exit.");
+            System.out.println("\nEnter options \n1.Add. \n2.edit contact \n3.delete contact \n4.Display Contact.\n5.search person in a city \n6.view person " +
+                    "\n7.sort by name \n8.sort by city\n9.Exit.");
             int userInput = scanner.nextInt();
             switch (userInput)
             {
@@ -45,6 +46,9 @@ public class AddressBookMain {
                     service.sortByName();
                     break;
                 case 8:
+                    service.sortByCity();
+                    break;
+                case 9:
                     isExit = true;
                     break;
                 default:
